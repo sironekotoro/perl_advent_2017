@@ -54,6 +54,13 @@ sub com_turn {
         push( @dice_com, $dice_roll_com );
     }
 
+
+    if (@_){
+        # この関数に引数がある場合、その値を出た目とする
+        @dice_com = @_;
+    }
+
+
     print "1回目のサイコロの眼:" . $dice_com[0] . "\n";
     print "2回目のサイコロの眼:" . $dice_com[1] . "\n";
     print "3回目のサイコロの眼:" . $dice_com[2] . "\n";
