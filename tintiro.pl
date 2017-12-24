@@ -15,7 +15,7 @@ print "サイコロを3回振ります。\n";
 print "お互いに3点ずつ掛け合います。\n\n";
 
 print "コンピューターのターンです。\n";
-&com_turn(1,1,1);
+&com_turn( 1, 1, 1 );
 
 print "あなたのターンです。\n";
 &your_turn();
@@ -54,13 +54,12 @@ sub com_turn {
         push( @dice_com, $dice_roll_com );
     }
 
+    if (@_) {
 
-    if (@_){
-        # この関数に引数がある場合、その値を出た目とする
-        # @_ はサブルーチンに渡された引数が格納されている配列
+ # この関数に引数がある場合、その値を出た目とする
+ # @_ はサブルーチンに渡された引数が格納されている配列
         @dice_com = @_;
     }
-
 
     print "1回目のサイコロの眼:" . $dice_com[0] . "\n";
     print "2回目のサイコロの眼:" . $dice_com[1] . "\n";
@@ -71,16 +70,18 @@ sub com_turn {
     # サイコロの目をハッシュに格納する
     # サイコロの目をkeyに、その芽が出た回数をvalueに設定
     my %dice_com_hash = ();
-    foreach my $n (@dice_com){
+    foreach my $n (@dice_com) {
         $dice_com_hash{$n}++;
     }
 
+    # ゾロ目の時の判定
     if ((      ( $dice_com[0] == $dice_com[1] )
             && ( $dice_com[1] == $dice_com[2] )
             && ( $dice_com[2] == $dice_com[0] )
         )
         && $dice_com[0] == 1
         )
+
     {
 
         #               負けちゃうのでチートする
