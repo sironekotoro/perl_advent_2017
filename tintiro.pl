@@ -68,6 +68,10 @@ sub com_turn {
 
     # $dice_total_com = $dice_com[0] + $dice_com[1] + $dice_com[2];
 
+    # サイコロの目をハッシュに格納する
+    # サイコロの目をkeyに、その芽が出た回数をvalueに設定
+    my %dice_com_hash = ();
+
     if ((      ( $dice_com[0] == $dice_com[1] )
             && ( $dice_com[1] == $dice_com[2] )
             && ( $dice_com[2] == $dice_com[0] )
