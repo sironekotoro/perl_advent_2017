@@ -176,42 +176,27 @@ sub com_turn {
             # print "★★★ヒフミCOMチート★★★\n";
             # ヒフミは２倍負け確定、後で実装する
         }
-        elsif ( $array[5] == 6 ) {
+      # ジゴロ(4,5,6)
+      # 3つの異なる目が配列にソートして格納された場合、
+      # 4,5,6 と格納される
+      # ヒフミとなるのは @array の1番目が4の場合
+      # $array[0] == 4 のとき
+        elsif ( $array[0] == 4 ) {
             #               負けちゃうのでチートする
             # print "★★★ヒフミCOMチート★★★\n";
             # ジゴロは２倍勝ち確定、チートに回す
             print "★★★ジゴロCOMチート★★★\n";
             return &cheat_comp();
         }
-
-
-    }
-
-    # elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
-    #     || ( $dice_com[0] == 3 && $dice_com[1] == 1 && $dice_com[2] == 2 )
-    #     || ( $dice_com[0] == 2 && $dice_com[1] == 3 && $dice_com[2] == 1 ) )
-    # {
-    #     $point_com = 3;
-    #     $point_com *= -2;
-    #     print "ヒフミ。2倍負け。" . $point_com . "点。\n\n";
-
-    # }
-    elsif (( $dice_com[0] == 4 && $dice_com[1] == 5 && $dice_com[2] == 6 )
-        || ( $dice_com[0] == 6 && $dice_com[1] == 4 && $dice_com[2] == 5 )
-        || ( $dice_com[0] == 5 && $dice_com[1] == 6 && $dice_com[2] == 4 ) )
-    {
-
-        #               負けちゃうのでチートする
-        print "★★★ヒフミCOMチート★★★\n";
-        return &cheat_comp();
-
-    }
-
     # メナシ(上記パターンに無い場合)
-    else {
+
+        else{
         $point_com = 0;
         print "メナシ。" . $point_com . "点。\n\n";
+        }
+
     }
+
 
     #array clear
     for ( my $k = 1; $k < 4; $k++ ) {
