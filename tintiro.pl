@@ -174,10 +174,8 @@ sub com_turn {
         if ( $array[2] == 3 ) {
             #               負けちゃうのでチートする
             print "★★★ヒフミCOMチート★★★\n";
-            return &cheat_comp();
 
         }
-
 
 
 
