@@ -15,7 +15,7 @@ print "サイコロを3回振ります。\n";
 print "お互いに3点ずつ掛け合います。\n\n";
 
 print "コンピューターのターンです。\n";
-&com_turn( 4, 5, 6 );
+&com_turn( );
 
 print "あなたのターンです。\n";
 &your_turn();
@@ -172,31 +172,34 @@ sub com_turn {
       # ヒフミとなるのは @array の3番目が3の場合
       # $array[2] == 3 のとき
         if ( $array[2] == 3 ) {
+
             #               負けちゃうのでチートする
             # print "★★★ヒフミCOMチート★★★\n";
             # ヒフミは２倍負け確定、後で実装する
         }
+
       # ジゴロ(4,5,6)
       # 3つの異なる目が配列にソートして格納された場合、
       # 4,5,6 と格納される
       # ヒフミとなるのは @array の1番目が4の場合
       # $array[0] == 4 のとき
         elsif ( $array[0] == 4 ) {
+
             #               負けちゃうのでチートする
             # print "★★★ヒフミCOMチート★★★\n";
             # ジゴロは２倍勝ち確定、チートに回す
             print "★★★ジゴロCOMチート★★★\n";
             return &cheat_comp();
         }
-    # メナシ(上記パターンに無い場合)
 
-        else{
-        $point_com = 0;
-        print "メナシ。" . $point_com . "点。\n\n";
+        # メナシ(上記パターンに無い場合)
+
+        else {
+            $point_com = 0;
+            print "メナシ。" . $point_com . "点。\n\n";
         }
 
     }
-
 
     #array clear
     for ( my $k = 1; $k < 4; $k++ ) {
