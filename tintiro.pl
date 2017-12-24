@@ -15,7 +15,7 @@ print "サイコロを3回振ります。\n";
 print "お互いに3点ずつ掛け合います。\n\n";
 
 print "コンピューターのターンです。\n";
-&com_turn( 1, 5, 5 );
+&com_turn( 2, 5, 5 );
 
 print "あなたのターンです。\n";
 &your_turn();
@@ -101,9 +101,6 @@ sub com_turn {
 
     # インケツ(1,?,?)
     elsif (( keys %dice_com_hash ) == 2 && $dice_com_hash{1} == 1)
-    # (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 1 )
-    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 1 )
-    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 1 ) )
     {
         $point_com = 1;
         print "インケツ。" . $point_com . "点。\n\n";
@@ -112,13 +109,10 @@ sub com_turn {
 
 
     # ニタコ(2,?,?)
-    elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 2 )
-        || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 2 )
-        || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 2 ) )
+    elsif (( keys %dice_com_hash ) == 2 && $dice_com_hash{2} == 1)
     {
         $point_com = 2;
         print "ニタコ。" . $point_com . "点。\n\n";
-
     }
 
     # サンタ(3,?,?)
