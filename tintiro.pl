@@ -75,12 +75,15 @@ sub com_turn {
     }
 
     # ゾロ目の時の判定
-    if ((      ( $dice_com[0] == $dice_com[1] )
-            && ( $dice_com[1] == $dice_com[2] )
-            && ( $dice_com[2] == $dice_com[0] )
-        )
-        && $dice_com[0] == 1
-        )
+    # ハッシュ内のスカラー値、$dice_com_hash{1} が 3 だった場合
+    # つまり1が3回出た場合
+    if ($dice_com_hash{1} == 3)
+    # ((      ( $dice_com[0] == $dice_com[1] )
+    #         && ( $dice_com[1] == $dice_com[2] )
+    #         && ( $dice_com[2] == $dice_com[0] )
+    #     )
+    #     && $dice_com[0] == 1
+    #     )
 
     {
 
