@@ -68,45 +68,39 @@ sub com_turn {
     # $dice_total_com = $dice_com[0] + $dice_com[1] + $dice_com[2];
 
     # サイコロの目をハッシュに格納する
-    # サイコロの目をkeyに、その芽が出た回数をvalueに設定
+    # サイコロの目をkeyに、その目が出た回数をvalueに設定
     my %dice_com_hash = ();
     foreach my $n (@dice_com) {
         $dice_com_hash{$n}++;
     }
 
-    print keys %dice_com_hash , "\n";
-
-
-
     # ゾロ目の時の判定
-    # ハッシュ内のスカラー値、$dice_com_hash{1} が 3 だった場合
-    # つまり1が3回出た場合
-    if ($dice_com_hash{1} == 3)
-    # ((      ( $dice_com[0] == $dice_com[1] )
-    #         && ( $dice_com[1] == $dice_com[2] )
-    #         && ( $dice_com[2] == $dice_com[0] )
-    #     )
-    #     && $dice_com[0] == 1
-    #     )
+    # %dice_com_hash の key が1つしか無い場合、ゾロ目が
+    # 出たと判断
+    if ( ( keys %dice_com_hash ) == 1 )
 
     {
-        exit();
+        # %dice_com_hash に 1 という key がある場合
+        # ピンゾロ
 
-        #               負けちゃうのでチートする
-        print "★★★ピンゾロCOMチート★★★\n";
+        if ( exists $dice_com_hash{1} ) {
+
+            #               負けちゃうのでチートする
+            print "★★★ピンゾロCOMチート★★★\n";
+        }
+
+        # %dice_com_hash のkey が 1 以外の場合
+        # アラシ
+        else {
+            #               負けちゃうのでチートする
+            print "★★★アラシCOMチート★★★\n";
+        }
         return &cheat_comp();
 
-    }
-    elsif (( $dice_com[0] == $dice_com[1] )
-        && ( $dice_com[1] == $dice_com[2] )
-        && ( $dice_com[2] == $dice_com[0] ) )
-    {
-
-        #               負けちゃうのでチートする
-        print "★★★アラシCOMチート★★★\n";
-        return &cheat_comp();
 
     }
+
+
     # インケツ(1,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 1 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 1 )
@@ -116,6 +110,7 @@ sub com_turn {
         print "インケツ。" . $point_com . "点。\n\n";
 
     }
+
     # ニタコ(2,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 2 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 2 )
@@ -125,6 +120,7 @@ sub com_turn {
         print "ニタコ。" . $point_com . "点。\n\n";
 
     }
+
     # サンタ(3,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 3 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 3 )
@@ -134,6 +130,7 @@ sub com_turn {
         print "サンタ。" . $point_com . "点。\n\n";
 
     }
+
     # シニメ(4,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 4 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 4 )
@@ -143,6 +140,7 @@ sub com_turn {
         print "シニメ。" . $point_com . "点。\n\n";
 
     }
+
     # ゴケ(5,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 5 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 5 )
@@ -154,6 +152,7 @@ sub com_turn {
         print "★★★ゴケCOMチート★★★\n";
 
     }
+
     # ロッポウ(6,?,?)
     elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 6 )
         || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 6 )
@@ -165,6 +164,7 @@ sub com_turn {
         return &cheat_comp();
 
     }
+
     # ヒフミ(1,2,3)
     elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
         || ( $dice_com[0] == 3 && $dice_com[1] == 1 && $dice_com[2] == 2 )
@@ -185,6 +185,7 @@ sub com_turn {
         return &cheat_comp();
 
     }
+
     # メナシ(上記パターンに無い場合)
     else {
         $point_com = 0;
