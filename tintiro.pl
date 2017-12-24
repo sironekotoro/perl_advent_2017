@@ -74,6 +74,10 @@ sub com_turn {
         $dice_com_hash{$n}++;
     }
 
+    print keys %dice_com_hash , "\n";
+
+
+
     # ゾロ目の時の判定
     # ハッシュ内のスカラー値、$dice_com_hash{1} が 3 だった場合
     # つまり1が3回出た場合
@@ -86,6 +90,7 @@ sub com_turn {
     #     )
 
     {
+        exit();
 
         #               負けちゃうのでチートする
         print "★★★ピンゾロCOMチート★★★\n";
