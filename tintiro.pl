@@ -158,56 +158,6 @@ sub com_turn {
 
     }
 
-    # ニタコ(2,?,?)
-    # elsif ( ( keys %dice_com_hash ) == 2 && $dice_com_hash{2} == 1 ) {
-    #     $point_com = 2;
-    #     print "ニタコ。" . $point_com . "点。\n\n";
-    # }
-
-    # サンタ(3,?,?)
-    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 3 )
-    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 3 )
-    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 3 ) )
-    # {
-    #     $point_com = 3;
-    #     print "サンタ。" . $point_com . "点。\n\n";
-
-    # }
-
-    # シニメ(4,?,?)
-    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 4 )
-    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 4 )
-    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 4 ) )
-    # {
-    #     $point_com = 4;
-    #     print "シニメ。" . $point_com . "点。\n\n";
-
-    # }
-
-    # # ゴケ(5,?,?)
-    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 5 )
-    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 5 )
-    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 5 ) )
-    # {
-
-    #     #               負けちゃうのでチートする
-    #     return &cheat_comp();
-    #     print "★★★ゴケCOMチート★★★\n";
-
-    # }
-
-    # ロッポウ(6,?,?)
-    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 6 )
-    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 6 )
-    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 6 ) )
-    # {
-
-    #     #               負けちゃうのでチートする
-    #     print "★★★ロッポウCOMチート★★★\n";
-    #     return &cheat_comp();
-
-    # }
-
     # ヒフミ(1,2,3)
     elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
         || ( $dice_com[0] == 3 && $dice_com[1] == 1 && $dice_com[2] == 2 )
