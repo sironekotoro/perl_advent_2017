@@ -106,8 +106,6 @@ sub com_turn {
         print "インケツ。" . $point_com . "点。\n\n";
     }
 
-
-
     # ニタコ(2,?,?)
     elsif (( keys %dice_com_hash ) == 2 && $dice_com_hash{2} == 1)
     {
