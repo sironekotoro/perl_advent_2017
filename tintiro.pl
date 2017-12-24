@@ -178,6 +178,9 @@ sub com_turn {
 
         }
 
+
+
+
     }
 
     # elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
