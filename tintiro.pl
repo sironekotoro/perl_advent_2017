@@ -7,8 +7,8 @@ my @dice_you;
 my $point_com = 3;
 my $point_you = 3;
 
-my $dice_total_com = 0;
-my $dice_total_you = 0;
+# my $dice_total_com = 0;
+# my $dice_total_you = 0;
 
 print "チンチロリンゲーム！\n";
 print "サイコロを3回振ります。\n";
@@ -54,7 +54,7 @@ push(@dice_com, $dice_roll_com);
 print "1回目のサイコロの眼:".$dice_com[0]."\n";
 print "2回目のサイコロの眼:".$dice_com[1]."\n";
 print "3回目のサイコロの眼:".$dice_com[2]."\n";
-$dice_total_com = $dice_com[0] + $dice_com[1] + $dice_com[2];
+# $dice_total_com = $dice_com[0] + $dice_com[1] + $dice_com[2];
 
         if((($dice_com[0] == $dice_com[1]) && ($dice_com[1] == $dice_com[2]) && ($dice_com[2] == $dice_com[0])) && $dice_com[0] == 1 ){
 
@@ -71,7 +71,7 @@ $dice_total_com = $dice_com[0] + $dice_com[1] + $dice_com[2];
         }elsif((($dice_com[0] == $dice_com[1]) && $dice_com[2] == 1) || (($dice_com[1] == $dice_com[2]) && $dice_com[0] == 1) ||(($dice_com[2] == $dice_com[0]) && $dice_com[1] == 1)){
         $point_com = 1;
         print "インケツ。".$point_com."点。\n\n";
-        
+
 
         }elsif((($dice_com[0] == $dice_com[1]) && $dice_com[2] == 2) || (($dice_com[1] == $dice_com[2]) && $dice_com[0] == 2) ||(($dice_com[2] == $dice_com[0]) && $dice_com[1] == 2)){
         $point_com = 2;
@@ -133,7 +133,7 @@ push(@dice_you, $dice_roll_you);
 print "1回目のサイコロの眼:".$dice_you[0]."\n";
 print "2回目のサイコロの眼:".$dice_you[1]."\n";
 print "3回目のサイコロの眼:".$dice_you[2]."\n";
-$dice_total_you = $dice_you[0] + $dice_you[1] + $dice_you[2];
+# $dice_total_you = $dice_you[0] + $dice_you[1] + $dice_you[2];
 
         if((($dice_you[0] == $dice_you[1]) && ($dice_you[1] == $dice_you[2]) && ($dice_you[2] == $dice_you[0])) && $dice_you[0] == 1 ){
         $point_you = 3;
@@ -193,8 +193,8 @@ $dice_total_you = $dice_you[0] + $dice_you[1] + $dice_you[2];
 }
 
 sub cheat_comp {
-        
-        # チートするときはサンタで出す        
+
+        # チートするときはサンタで出す
                 my @cheat_com;
                 my $cheat_com_point;
         $cheat_com[0] = 1;
@@ -218,7 +218,7 @@ sub cheat_comp {
 }
 
 sub cheat_you {
-                        #               チートするときはゴケで出す   
+                        #               チートするときはゴケで出す
                 my @cheat_you;
                 my $cheat_you_point;
         $cheat_you[0] = 1;
