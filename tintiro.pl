@@ -15,7 +15,7 @@ print "サイコロを3回振ります。\n";
 print "お互いに3点ずつ掛け合います。\n\n";
 
 print "コンピューターのターンです。\n";
-&com_turn( 2, 5, 5 );
+&com_turn( 6, 2, 2 );
 
 print "あなたのターンです。\n";
 &your_turn();
@@ -99,63 +99,114 @@ sub com_turn {
 
     }
 
-    # インケツ(1,?,?)
-    elsif (( keys %dice_com_hash ) == 2 && $dice_com_hash{1} == 1)
-    {
-        $point_com = 1;
-        print "インケツ。" . $point_com . "点。\n\n";
+    # 同じ目が2つでた場合
+    elsif ( ( keys %dice_com_hash ) == 2 ) {
+
+        # サイコロの結果が格納されているハッシュから、
+        # key（目）、value（回数）を取得する
+        my $num;
+        while ( my ( $key, $value ) = each %dice_com_hash ) {
+
+            # 取得したkeyとvalueの組み合わせのうち、
+            # valueが 1 、1度しか出てないもののkey（目）を
+            # $num に設定する
+            if ( $value == 1 ) {
+                $num = $key;
+            }
+        }
+
+        # 目の数字で処理を分岐する
+        # インケツ(1,?,?)
+        if ( $num == 1 ) {
+            $point_com = 1;
+            print "インケツ。" . $point_com . "点。\n\n";
+
+        }
+
+        # ニタコ(2,?,?)
+        elsif ( $num == 2 ) {
+            $point_com = 2;
+            print "ニタコ。" . $point_com . "点。\n\n";
+        }
+
+        # サンタ(3,?,?)
+        elsif ( $num == 3 ) {
+            $point_com = 3;
+            print "サンタ。" . $point_com . "点。\n\n";
+        }
+
+        # シニメ(4,?,?)
+        elsif ( $num == 4 ) {
+            $point_com = 4;
+            print "シニメ。" . $point_com . "点。\n\n";
+        }
+
+        # ゴケ(5,?,?)
+        elsif ( $num == 5 ) {
+
+            #               負けちゃうのでチートする
+            return &cheat_comp();
+            print "★★★ゴケCOMチート★★★\n";
+        }
+
+        # ロッポウ(6,?,?)
+        elsif ( $num == 6 ) {
+            #               負けちゃうのでチートする
+            print "★★★ロッポウCOMチート★★★\n";
+            return &cheat_comp();
+        }
+
     }
 
     # ニタコ(2,?,?)
-    elsif (( keys %dice_com_hash ) == 2 && $dice_com_hash{2} == 1)
-    {
-        $point_com = 2;
-        print "ニタコ。" . $point_com . "点。\n\n";
-    }
+    # elsif ( ( keys %dice_com_hash ) == 2 && $dice_com_hash{2} == 1 ) {
+    #     $point_com = 2;
+    #     print "ニタコ。" . $point_com . "点。\n\n";
+    # }
 
     # サンタ(3,?,?)
-    elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 3 )
-        || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 3 )
-        || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 3 ) )
-    {
-        $point_com = 3;
-        print "サンタ。" . $point_com . "点。\n\n";
+    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 3 )
+    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 3 )
+    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 3 ) )
+    # {
+    #     $point_com = 3;
+    #     print "サンタ。" . $point_com . "点。\n\n";
 
-    }
+    # }
 
     # シニメ(4,?,?)
-    elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 4 )
-        || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 4 )
-        || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 4 ) )
-    {
-        $point_com = 4;
-        print "シニメ。" . $point_com . "点。\n\n";
+    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 4 )
+    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 4 )
+    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 4 ) )
+    # {
+    #     $point_com = 4;
+    #     print "シニメ。" . $point_com . "点。\n\n";
 
-    }
+    # }
 
-    # ゴケ(5,?,?)
-    elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 5 )
-        || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 5 )
-        || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 5 ) )
-    {
+    # # ゴケ(5,?,?)
+    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 5 )
+    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 5 )
+    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 5 ) )
+    # {
 
-        #               負けちゃうのでチートする
-        return &cheat_comp();
-        print "★★★ゴケCOMチート★★★\n";
+    #     #               負けちゃうのでチートする
+    #     return &cheat_comp();
+    #     print "★★★ゴケCOMチート★★★\n";
 
-    }
+    # }
 
     # ロッポウ(6,?,?)
-    elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 6 )
-        || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 6 )
-        || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 6 ) )
-    {
+    # elsif (( ( $dice_com[0] == $dice_com[1] ) && $dice_com[2] == 6 )
+    #     || ( ( $dice_com[1] == $dice_com[2] ) && $dice_com[0] == 6 )
+    #     || ( ( $dice_com[2] == $dice_com[0] ) && $dice_com[1] == 6 ) )
+    # {
 
-        #               負けちゃうのでチートする
-        print "★★★ロッポウCOMチート★★★\n";
-        return &cheat_comp();
+    #     #               負けちゃうのでチートする
+    #     print "★★★ロッポウCOMチート★★★\n";
+    #     return &cheat_comp();
 
-    }
+    # }
 
     # ヒフミ(1,2,3)
     elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
