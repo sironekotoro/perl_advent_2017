@@ -71,6 +71,9 @@ sub com_turn {
     # サイコロの目をハッシュに格納する
     # サイコロの目をkeyに、その芽が出た回数をvalueに設定
     my %dice_com_hash = ();
+    foreach my $n (@dice_com){
+        $dice_com_hash{$n}++;
+    }
 
     if ((      ( $dice_com[0] == $dice_com[1] )
             && ( $dice_com[1] == $dice_com[2] )
