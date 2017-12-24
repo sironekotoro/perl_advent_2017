@@ -15,7 +15,7 @@ print "サイコロを3回振ります。\n";
 print "お互いに3点ずつ掛け合います。\n\n";
 
 print "コンピューターのターンです。\n";
-&com_turn( 6, 2, 2 );
+&com_turn( 1, 2, 3 );
 
 print "あなたのターンです。\n";
 &your_turn();
@@ -151,6 +151,7 @@ sub com_turn {
 
         # ロッポウ(6,?,?)
         elsif ( $num == 6 ) {
+
             #               負けちゃうのでチートする
             print "★★★ロッポウCOMチート★★★\n";
             return &cheat_comp();
@@ -158,16 +159,36 @@ sub com_turn {
 
     }
 
-    # ヒフミ(1,2,3)
-    elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
-        || ( $dice_com[0] == 3 && $dice_com[1] == 1 && $dice_com[2] == 2 )
-        || ( $dice_com[0] == 2 && $dice_com[1] == 3 && $dice_com[2] == 1 ) )
-    {
-        $point_com = 3;
-        $point_com *= -2;
-        print "ヒフミ。2倍負け。" . $point_com . "点。\n\n";
+    # 3つとも異なる目が出た場合
+    elsif ( ( keys %dice_com_hash ) == 3 ) {
+
+        # ハッシュのkey（サイコロの目）をソートして、
+        # 配列に格納する
+        my @array = sort keys %dice_com_hash;
+
+      # ヒフミ(1,2,3)
+      # 3つの異なる目が配列にソートして格納された場合、
+      # 1,2,3 と格納される
+      # ヒフミとなるのは @array の3番目が3の場合
+      # $array[2] == 3 のとき
+        if ( $array[2] == 3 ) {
+            #               負けちゃうのでチートする
+            print "★★★ヒフミCOMチート★★★\n";
+            return &cheat_comp();
+
+        }
 
     }
+
+    # elsif (( $dice_com[0] == 1 && $dice_com[1] == 2 && $dice_com[2] == 3 )
+    #     || ( $dice_com[0] == 3 && $dice_com[1] == 1 && $dice_com[2] == 2 )
+    #     || ( $dice_com[0] == 2 && $dice_com[1] == 3 && $dice_com[2] == 1 ) )
+    # {
+    #     $point_com = 3;
+    #     $point_com *= -2;
+    #     print "ヒフミ。2倍負け。" . $point_com . "点。\n\n";
+
+    # }
     elsif (( $dice_com[0] == 4 && $dice_com[1] == 5 && $dice_com[2] == 6 )
         || ( $dice_com[0] == 6 && $dice_com[1] == 4 && $dice_com[2] == 5 )
         || ( $dice_com[0] == 5 && $dice_com[1] == 6 && $dice_com[2] == 4 ) )
